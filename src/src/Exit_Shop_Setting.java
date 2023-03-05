@@ -6,6 +6,6 @@ public class Exit_Shop_Setting extends Menu_Item{
     }
 	
 	void item_action() {
-		
+		Shop_setting.shop_setting_while = false;
 	}
 }

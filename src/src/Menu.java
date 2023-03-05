@@ -8,7 +8,8 @@ public class Menu {
         for (int i = 0; i < menu.size(); i++)
         {
             System.out.println("["+(i+1) + "] " + menu.get(i).item_name);
-            //SchoolDetail.setupWhile = true;
+            Shop_setting.shop_setting_while = true;
+            Shop_item.shop_item_while = true;
         }
     }
 }

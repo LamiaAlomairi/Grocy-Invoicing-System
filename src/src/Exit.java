@@ -6,6 +6,6 @@ public class Exit extends Menu_Item{
     }
 	
 	void item_action() {
-		
+		Main.program = false;
 	}
 }
