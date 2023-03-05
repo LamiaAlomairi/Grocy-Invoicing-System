@@ -10,6 +10,7 @@ public class Menu {
             System.out.println("["+(i+1) + "] " + menu.get(i).item_name);
             Shop_setting.shop_setting_while = true;
             Shop_item.shop_item_while = true;
+            //Add_Item.addItem_loop = true;
         }
     }
 }

@@ -8,6 +8,7 @@ public class Shop_setting extends Menu_Item{
     }
 	
 	void item_action() {
+		
 		while(shop_setting_while){
             try {
             	System.out.println("________________________________");
@@ -33,5 +34,6 @@ public class Shop_setting extends Menu_Item{
             	scan.next(); // clear the buffer
             }
         }
+		
 	}
 }
