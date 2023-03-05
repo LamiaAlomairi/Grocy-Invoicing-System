@@ -17,15 +17,25 @@ public class Main {
 	    while(program)
 		{
 	    	try {
+	    		System.out.println("________________________________");
 			    System.out.println("Application Main Menu: ");
-			    System.out.println("________________________________");
 			    Menu.show_menu(firstMenu.main_menu);
-			    System.out.println("________________________________");
 			    System.out.print("Select Action  :");
 			    first_selection = scan.nextInt();
+			    
 			    if(first_selection >0 && first_selection <= firstMenu.main_menu.size()) {
-			    	stack.push(first_selection);
-			    	firstMenu.main_menu.get(first_selection-1).item_action();
+			    	first_selection = first_selection - 1;
+			    	 switch (first_selection) {
+		                case 0, 1, 2, 3, 4, 5, 6, 7:
+		                	stack.push(first_selection);
+					    	firstMenu.main_menu.get(first_selection).item_action();
+		                    break;
+		                default:
+		                    System.out.println("Invalid Input ");
+			    	 }
+			    	//stack.push(first_selection);
+			    	//firstMenu.main_menu.get(first_selection-1).item_action();
+			    	 
 			    }
 			    else {
 			    	System.out.println(" ________________________________________________");

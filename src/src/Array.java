@@ -16,6 +16,9 @@ public class Array {
 	    this.main_menu.add(new Program_statistic());
 	    this.main_menu.add(new Exit());
 	    
-	    
+	    this.shop_setting_menu.add(new Load_Data());
+	    this.shop_setting_menu.add(new Shop_name());
+	    this.shop_setting_menu.add(new Invoice_header());
+	    this.shop_setting_menu.add(new Exit_Shop_Setting());
     }
 }
