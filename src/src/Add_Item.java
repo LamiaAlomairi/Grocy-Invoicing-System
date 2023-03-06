@@ -69,7 +69,4 @@ public class Add_Item extends Menu_Item implements Repeat{
 		
 	}
 	
-	public void serlaiz() {
-		
-	}
 }

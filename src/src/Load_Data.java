@@ -1,23 +1,92 @@
 package src;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class Load_Data extends Menu_Item{
+public class Load_Data extends Menu_Item implements Repeat{
+	Scanner scan = new Scanner(System.in);
 	
-	static ArrayList<Item> item = new ArrayList<Item>();
-	static ArrayList<Invoice> invoice = new ArrayList<Invoice>();
+	boolean item_loop = true;
+	boolean invoice_loop = true;
 	
 	Load_Data(){
         this.item_name="Load Data ";
     }
-	
+	static ArrayList<Item> itemsList = new ArrayList<>();
+	static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 	void item_action() {
-		Item.item_loop = true;
-		Invoice.invoice_loop = true;
-		Item newItem = new Item();
-		item.add(newItem);
 		
-		Invoice newInvoice = new Invoice();
-		invoice.add(newInvoice);
+		
+        
+        while(item_loop) {
+        	// Get item details from user
+        	System.out.print("Enter Item Id: ");
+        	int itemId = scan.nextInt();
+        	scan.nextLine(); // Consume newline left-over
+        	System.out.print("Enter Item Name: ");
+        	String itemName = scan.nextLine();
+        	System.out.print("Enter Unit Price: ");
+        	double unitPrice = scan.nextDouble();
+        	System.out.print("Enter Quantity: ");
+        	int quantity = scan.nextInt();
+        	repeat();
+        	// Create item object and add to the list
+        	Item item = new Item(itemId, itemName, unitPrice, quantity);
+        	itemsList.add(item);
+        }
+        // Print the list to verify
+        System.out.println(itemsList + "\n");
+         invoice_loop = true;
+        while (invoice_loop) {
+            System.out.print("Enter Customer First Name: ");
+            String firstName = scan.next();
+
+            System.out.print("Enter Customer Last Name: ");
+            String lastName = scan.next();
+
+            System.out.print("Enter Customer Phone Number: ");
+            String phoneNumber = scan.next();
+
+            System.out.print("Enter Invoice Date: ");
+            String invoiceDate = scan.next();
+
+            System.out.print("Enter Number Of Item: ");
+            int numberOfItems = scan.nextInt();
+
+            System.out.print("Enter Total Amount: ");
+            double totalAmount = scan.nextDouble();
+
+            System.out.print("Enter Paid Amount: ");
+            double paidAmount = scan.nextDouble();
+
+            System.out.print("Enter Balance: ");
+            double balance = scan.nextDouble();
+            
+            repeat(); 
+            
+            Invoice invoice = new Invoice(firstName, lastName, phoneNumber, invoiceDate, numberOfItems, totalAmount, paidAmount, balance);
+            invoiceList.add(invoice);
+            
+        }
+        System.out.println(invoiceList + "\n");
+        
+	}
+	@Override
+	public void repeat() {
+		while(true){
+            System.out.print("Do you want to add more Data?(Y/y-N/n)  ");
+            String select=scan.next();
+            if(select.equals("N") || select.equals("n")){
+            	item_loop = false;
+            	invoice_loop = false;
+                break;
+            }
+            else if(select.equals("y")||select.equals("Y")){
+                break;
+            }
+            else{
+                System.out.println("Invalid letter  ");
+            }
+        }
+		
 	}
 }
