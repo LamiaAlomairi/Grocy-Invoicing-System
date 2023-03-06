@@ -6,8 +6,9 @@ public class Item{
 	 private String itemName;
 	 private double unitPrice;
 	 private int quantity;
+	 private float quantityAmount;
 
-	    public Item(int itemId, String itemName, double unitPrice, int quantity) {
+	    public Item(int itemId, String itemName, double unitPrice, int quantity, double quantityAmount) {
 	        this.itemId = itemId;
 	        this.itemName = itemName;
 	        this.unitPrice = unitPrice;
@@ -46,6 +47,14 @@ public class Item{
 	    public void setQuantity(int quantity) {
 	        this.quantity = quantity;
 	    }
+	    
+	    public float getQuantityAmount() {
+	        return quantityAmount;
+	    }
+
+	    public void setQuantityAmount(float quantityAmount) {
+	        this.quantityAmount = quantityAmount;
+	    }
 
 	    // toString method to print item details
 	    @Override
@@ -55,6 +64,7 @@ public class Item{
 	                ", itemName='" + itemName + '\'' +
 	                ", unitPrice=" + unitPrice +
 	                ", quantity=" + quantity +
+	                ", quantityAmount=" + quantityAmount +
 	                '}';
 	    }
 }

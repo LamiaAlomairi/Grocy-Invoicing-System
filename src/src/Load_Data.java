@@ -29,9 +29,11 @@ public class Load_Data extends Menu_Item implements Repeat{
         	System.out.print("Enter Quantity: ");
         	int quantity = scan.nextInt();
         	
+        	double quantityAmount = unitPrice * quantity;
+        	
         	repeat();
         	// Create item object and add to the list
-        	Item item = new Item(itemId, itemName, unitPrice, quantity);
+        	Item item = new Item(itemId, itemName, unitPrice, quantity, quantityAmount);
         	itemsList.add(item);
         }
         
@@ -59,8 +61,7 @@ public class Load_Data extends Menu_Item implements Repeat{
             System.out.print("Enter Paid Amount: ");
             double paidAmount = scan.nextDouble();
 
-            System.out.print("Enter Balance: ");
-            double balance = scan.nextDouble();
+            double balance = totalAmount - paidAmount;
             
             repeat(); 
             

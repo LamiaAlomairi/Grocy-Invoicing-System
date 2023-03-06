@@ -37,8 +37,7 @@ public class New_invoice extends Menu_Item implements Repeat{
 	            System.out.print("Enter Paid Amount: ");
 	            float paid_amount = scan.nextFloat();
 	            
-	            System.out.print("Enter Balance: ");
-	            float balance = scan.nextFloat();
+	            float balance = total_amount - paid_amount;
 	            
 	            repeat();
 	            
