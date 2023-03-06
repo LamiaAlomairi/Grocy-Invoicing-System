@@ -10,24 +10,28 @@ public class Search_invoice extends Menu_Item implements Repeat{
     }
 	
 	void item_action() {
-		while(searchLoop){
-            System.out.print("Enter Invoice No to Search:    ");
-            int searchInvoice = scan.nextInt();
-            for(int i=0; i < Load_Data.invoiceList.size(); i++){
-            	int b = i + 1;
-                if(b == searchInvoice){
-                	System.out.println("Invoice No:      " + b);
-    	            System.out.println("Invoice Date:    " + Load_Data.invoiceList.get(b).getInvoiceDate()); 
-    	            System.out.println("Customer Name:   " + Load_Data.invoiceList.get(b).getFirstName() + " " + Load_Data.invoiceList.get(b).getLastName());
-    	            System.out.println("Number Of Items: " + Load_Data.invoiceList.get(b).getNumberOfItems());
-    	            System.out.println("Total Amount:    " + Load_Data.invoiceList.get(b).getTotalAmount());
-    	            System.out.println("Balance:         " + Load_Data.invoiceList.get(b).getBalance());
-                }
-                
-            }
-           
-            repeat();
-       }
+		try {
+			while(searchLoop){
+	            System.out.print("Enter Invoice No to Search:    ");
+	            int searchInvoice = scan.nextInt();
+	            for(int i=0; i < Load_Data.invoiceList.size(); i++){
+	            	int b = i + 1;
+	                if(b == searchInvoice){
+	                	System.out.println("Invoice No:      " + b);
+	    	            System.out.println("Invoice Date:    " + Load_Data.invoiceList.get(b).getInvoiceDate()); 
+	    	            System.out.println("Customer Name:   " + Load_Data.invoiceList.get(b).getFirstName() + " " + Load_Data.invoiceList.get(b).getLastName());
+	    	            System.out.println("Number Of Items: " + Load_Data.invoiceList.get(b).getNumberOfItems());
+	    	            System.out.println("Total Amount:    " + Load_Data.invoiceList.get(b).getTotalAmount());
+	    	            System.out.println("Balance:         " + Load_Data.invoiceList.get(b).getBalance());
+	                }
+	            }
+	            repeat();
+			}
+		}
+		catch (Exception e){
+			System.out.println("Error -_-  Invalid input");
+		}
+		
 	}
 
 	@Override

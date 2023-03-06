@@ -2,7 +2,6 @@ package src;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Invoice_header extends Menu_Item{
@@ -56,53 +55,58 @@ public class Invoice_header extends Menu_Item{
     }
 	/***************************************************************************/
 	void item_action() {
-		System.out.print("Write Telephone Number:  ");
-		telephone = scan.nextInt();
-        System.out.println(" ");
-        
-        System.out.print("Write Fax Number:  ");
-		fax = scan.nextInt();
-		System.out.println(" ");
-		
-		System.out.print("Write Shop Email:  ");
-		email = scan.next();
-		System.out.println(" ");
-		
-		System.out.print("Write A Shop Website:  ");
-		website = scan.next();
-		System.out.println(" ");
-        
-        try {
-	    	File file = new File("InvoiceSystem.txt"); 
+		try {
+			System.out.print("Write Telephone Number:  ");
+			telephone = scan.nextInt();
+	        System.out.println(" ");
+	        
+	        System.out.print("Write Fax Number:  ");
+			fax = scan.nextInt();
+			System.out.println(" ");
 			
-			if (file.createNewFile()) {
-				System.out.println("File created ");
-				// Open the file in write mode
-				FileWriter files = new FileWriter("InvoiceSystem.txt");
-				files.write("Shop Telephone: " + Invoice_header.telephone);
-				files.write("\n");
-				files.write("Shop Fax: " + Invoice_header.fax);
-				files.write("\n");
-				files.write("Shop Email: " + Invoice_header.email);
-				files.write("\n");
-				files.write("Shop Website: " + Invoice_header.website);
-				files.close();
-				System.out.println("Data written to file successfully.");
-			} 
-			else {
-				System.out.println("File already exists.");
-				// Open the file in write mode
-				FileWriter files = new FileWriter("InvoiceSystem.txt");
-				files.write("Shop Telephone: " + Invoice_header.telephone + "\n");
-				files.write("Shop Fax: " + Invoice_header.fax + "\n");
-				files.write("Shop Email: " + Invoice_header.email + "\n");
-				files.write("Shop Website: " + Invoice_header.website);
-				files.close();
-				System.out.println("Data written to file successfully.");
-			}
-	    } 
-        catch (IOException e) {
-	      System.out.println("An error occurred while writing to the file.");
-	    }
+			System.out.print("Write Shop Email:  ");
+			email = scan.next();
+			System.out.println(" ");
+			
+			System.out.print("Write A Shop Website:  ");
+			website = scan.next();
+			System.out.println(" ");
+			
+			try {
+		    	File file = new File("InvoiceSystem.txt"); 
+				
+				if (file.createNewFile()) {
+					System.out.println("File created ");
+					// Open the file in write mode
+					FileWriter files = new FileWriter("InvoiceSystem.txt");
+					files.write("Shop Telephone: " + Invoice_header.telephone);
+					files.write("Shop Fax: " + Invoice_header.fax);
+					files.write("Shop Email: " + Invoice_header.email);
+					files.write("Shop Website: " + Invoice_header.website);
+					files.close();
+					System.out.println("Data written to file successfully.");
+				} 
+				else {
+					//System.out.println("File already exists.");
+					// Open the file in write mode
+					FileWriter files = new FileWriter("InvoiceSystem.txt");
+					files.write("Shop Telephone: " + Invoice_header.telephone + "\n");
+					files.write("Shop Fax: " + Invoice_header.fax + "\n");
+					files.write("Shop Email: " + Invoice_header.email + "\n");
+					files.write("Shop Website: " + Invoice_header.website);
+					files.close();
+					System.out.println("Data written to file successfully.");
+				}
+		    } 
+	        catch (Exception e) {
+		      System.out.println("An error occurred while writing to the file.");
+		    }
+		}
+		catch (Exception ex){
+		      System.out.println("An error fond.");
+		}
+        
+        
+		
 	}
 }

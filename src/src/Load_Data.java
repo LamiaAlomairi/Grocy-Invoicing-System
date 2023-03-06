@@ -1,5 +1,4 @@
 package src;
-
 import java.util.*;
 
 public class Load_Data extends Menu_Item implements Repeat{
@@ -14,27 +13,29 @@ public class Load_Data extends Menu_Item implements Repeat{
 	static ArrayList<Item> itemsList = new ArrayList<>();
 	static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 	void item_action() {
-		
-		
         
         while(item_loop) {
         	// Get item details from user
         	System.out.print("Enter Item Id: ");
         	int itemId = scan.nextInt();
         	scan.nextLine(); // Consume newline left-over
+        	
         	System.out.print("Enter Item Name: ");
         	String itemName = scan.nextLine();
+        	
         	System.out.print("Enter Unit Price: ");
         	double unitPrice = scan.nextDouble();
+        	
         	System.out.print("Enter Quantity: ");
         	int quantity = scan.nextInt();
+        	
         	repeat();
         	// Create item object and add to the list
         	Item item = new Item(itemId, itemName, unitPrice, quantity);
         	itemsList.add(item);
         }
-        // Print the list to verify
-        System.out.println(itemsList + "\n");
+        
+        
          invoice_loop = true;
         while (invoice_loop) {
             System.out.print("Enter Customer First Name: ");
@@ -67,7 +68,6 @@ public class Load_Data extends Menu_Item implements Repeat{
             invoiceList.add(invoice);
             
         }
-        System.out.println(invoiceList + "\n");
         
 	}
 	@Override

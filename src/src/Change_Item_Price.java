@@ -11,17 +11,21 @@ public class Change_Item_Price extends Menu_Item {
 
     void item_action() {
         try {
-            displayAllItems();
-            int selectedItemId = getSelectedItemId();
-            float newPriceValue = getNewPrice();
-            Load_Data.itemsList.get(selectedItemId).setUnitPrice(newPriceValue);
-            System.out.println("Price changed successfully.");
-        } catch (InputMismatchException e) {
+        	if(Load_Data.itemsList.isEmpty()) {
+        		System.out.println("No Item In The List.");
+        	}
+        	else
+        	{
+        		displayAllItems();
+                int selectedItemId = getSelectedItemId();
+                float newPriceValue = getNewPrice();
+                Load_Data.itemsList.get(selectedItemId).setUnitPrice(newPriceValue);
+                System.out.println("Price changed successfully.");
+        	}
+            
+        } 
+        catch (Exception e) {
             System.out.println("Invalid input. Please enter a valid number.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid item ID. Please select a valid item ID.");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

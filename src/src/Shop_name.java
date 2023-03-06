@@ -39,7 +39,7 @@ public class Shop_name extends Menu_Item{
 				System.out.println("Data written to file successfully.");
 			} 
 			else {
-				System.out.println("File already exists.");
+				//System.out.println("File already exists.");
 				// Open the file in write mode
 				FileWriter files = new FileWriter("InvoiceSystem.txt");
 				files.write(Shop_name.shop_Name);
