@@ -3,9 +3,9 @@ package src;
 
 public class Item{
 	 private int itemId;
-	    private String itemName;
-	    private double unitPrice;
-	    private int quantity;
+	 private String itemName;
+	 private double unitPrice;
+	 private int quantity;
 
 	    public Item(int itemId, String itemName, double unitPrice, int quantity) {
 	        this.itemId = itemId;
