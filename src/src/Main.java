@@ -22,12 +22,12 @@ public class Main {
 			    Menu.show_menu(firstMenu.main_menu);
 			    System.out.print("Select Action  :");
 			    first_selection = scan.nextInt();
-			    
+			    stack.push(first_selection);
 			    if(first_selection >0 && first_selection <= firstMenu.main_menu.size()) {
 			    	first_selection = first_selection - 1;
 			    	 switch (first_selection) {
 		                case 0, 1, 2, 3, 4, 5, 6, 7:
-		                	stack.push(first_selection);
+		                	
 					    	firstMenu.main_menu.get(first_selection).item_action();
 		                    break;
 		                default:
