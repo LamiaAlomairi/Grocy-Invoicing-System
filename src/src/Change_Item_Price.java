@@ -26,7 +26,7 @@ public class Change_Item_Price extends Menu_Item {
         
     	
         try {
-        	if(Load_Data.itemsList.isEmpty()) {
+        	/*if(Load_Data.itemsList.isEmpty()) {
         		System.out.println("No Item In ArrayList.");
         	}
         	else{
@@ -35,7 +35,7 @@ public class Change_Item_Price extends Menu_Item {
                 float newPriceValue = getNewPrice();
                 Load_Data.itemsList.get(selectedItemId).setUnitPrice(newPriceValue);
                 System.out.println("Price changed successfully.");
-        	}
+        	}*/
         	try {
 
                 Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
@@ -50,18 +50,13 @@ public class Change_Item_Price extends Menu_Item {
                 ResultSet resultSet = st.executeQuery(sql1);
 
 
+                System.out.printf("%5s %15s %15s %10s %18s","Item Id","Item Name","Unit Price","Quantity","Quantity Amount");
+                System.out.println();
+                System.out.println("_____________________________________________________________________");
                 while (resultSet.next()) {
-                	System.out.println("-------------- ");
-                	System.out.print("Item Id: ");
-                	System.out.println(resultSet.getString("item_id"));
-                	System.out.print("Item Name: ");
-                    System.out.println(resultSet.getString("item_name"));
-                    System.out.print("Unit Price: ");
-                    System.out.println(resultSet.getString("unit_price"));
-                    System.out.print("Quantity: ");
-                    System.out.println(resultSet.getString("quantity"));
-                    System.out.print("Quantity Amount: ");
-                    System.out.println(resultSet.getString("quantityAmount"));
+                	System.out.printf("%5s %15s %15s %10s %18s",resultSet.getString("item_id"),resultSet.getString("item_name"),resultSet.getString("unit_price"),resultSet.getString("quantity"),resultSet.getString("quantityAmount"));
+                    System.out.println();
+                    System.out.println("---------------------------------------------------------------------");
                 }
                 System.out.print("Enter item id: ");
                 int selectedItemId = scanner.nextInt();

@@ -27,9 +27,7 @@ public class Load_Data extends Menu_Item implements Repeat{
         
         while(item_loop) {
         	// Get item details from user
-        	System.out.print("Enter Item Id: ");
-        	int itemId = scan.nextInt();
-        	scan.nextLine(); // Consume newline left-over
+        	int itemId = 1;
         	
         	System.out.print("Enter Item Name: ");
         	String itemName = scan.nextLine();
@@ -71,6 +69,7 @@ public class Load_Data extends Menu_Item implements Repeat{
         	// Create item object and add to the list
         	Item item = new Item(itemId, itemName, unitPrice, quantity, quantityAmount);
         	itemsList.add(item);
+        	itemId++;
         }
         
         

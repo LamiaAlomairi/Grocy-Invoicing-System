@@ -53,8 +53,6 @@ public class Add_Item extends Menu_Item implements Repeat{
 	                 String sql_insert_into_item = "INSERT INTO Item VALUES ('" + item_name + 
 	                 		"', " + unit_price + ", " + quantity + ", " + quantityAmount + ")";
 
-
-
 	                 Integer m = st.executeUpdate(sql_insert_into_item);
 	                 if (m >= 1) {
 	                     System.out.println("inserted successfully : " + sql_insert_into_item);
@@ -79,7 +77,6 @@ public class Add_Item extends Menu_Item implements Repeat{
 		          	out.close();
 		          	fileout.close();
 		          	System.out.println("serialized and saved");
-		   
 		      }
 	        catch (Exception e){
 	        	System.out.println("serialized Error");

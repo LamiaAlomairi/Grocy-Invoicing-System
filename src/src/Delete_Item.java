@@ -25,9 +25,7 @@ public class Delete_Item extends Menu_Item{
         Connection con = null;
 		
 		try {
-			if(Load_Data.itemsList.isEmpty()) {
 				try {
-
 	                Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
 	                DriverManager.registerDriver(driver);
 	                con = DriverManager.getConnection(url, user, pass);
@@ -35,13 +33,15 @@ public class Delete_Item extends Menu_Item{
 	                String sql1 = "Select * from Item";
 	                ResultSet resultSet = st.executeQuery(sql1);
 
+	                System.out.printf("%5s %15s","Item Id","Item Name");
+                    System.out.println();
+                    System.out.println("___________________________");
 	                while (resultSet.next()) {
-	                	System.out.println("-------------- ");
-	                	System.out.print("Item Id: ");
-	                	System.out.println(resultSet.getString("item_id"));
-	                	System.out.print("Item Name: ");
-	                    System.out.println(resultSet.getString("item_name"));
+	                	System.out.printf("%5s %15s",resultSet.getString("item_id"),resultSet.getString("item_name"));
+	                    System.out.println();
+	                    System.out.println("---------------------------");
 	                }
+	                
 	                System.out.print("Enter item id: ");
 	                int selectedItemId = scan.nextInt();
 	                String sql_update_item = "DELETE FROM Item WHERE item_id ="+ selectedItemId +";";
@@ -56,8 +56,7 @@ public class Delete_Item extends Menu_Item{
 	            } catch (Exception ex) {
 	                System.err.println(ex);
 	            }
-        	}
-        	else{
+        	/*
         		for (int i = 0; i < Load_Data.itemsList.size(); i++) {
     	            Item currentItem = Load_Data.itemsList.get(i);
     	            System.out.println("Item ID: " + currentItem.getItemId());
@@ -76,12 +75,10 @@ public class Delete_Item extends Menu_Item{
     	            	System.out.println("Item not found.");
     	            }
     	        } 
-        	}
+        	*/
 	    } 
 		catch (Exception e) {
 	    	System.out.println("Wrong Input. ");
-	    }
-		
-        
+	    } 
 	}
 }
