@@ -1,5 +1,4 @@
 package src;
-
 import java.util.*;
 import java.util.Stack;
 
@@ -10,6 +9,7 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String[] args) {
+		JDBC.createTable();
 		Array firstMenu = new Array();
 	    
 	    int first_selection;
@@ -32,10 +32,7 @@ public class Main {
 		                    break;
 		                default:
 		                    System.out.println("Invalid Input ");
-			    	 }
-			    	//stack.push(first_selection);
-			    	//firstMenu.main_menu.get(first_selection-1).item_action();
-			    	 
+			    	 } 
 			    }
 			    else {
 			    	System.out.println(" ________________________________________________");

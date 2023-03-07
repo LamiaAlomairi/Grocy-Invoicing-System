@@ -47,7 +47,7 @@ public class Load_Data extends Menu_Item implements Repeat{
             String lastName = scan.next();
 
             System.out.print("Enter Customer Phone Number: ");
-            String phoneNumber = scan.next();
+            int phoneNumber = scan.nextInt();
 
             System.out.print("Enter Invoice Date: ");
             String invoiceDate = scan.next();

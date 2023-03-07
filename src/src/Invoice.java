@@ -4,14 +4,14 @@ public class Invoice {
     
 	private String firstName;
 	private String lastName;
-	private String phoneNumber;
+	private int phoneNumber;
 	private String invoiceDate;
 	private int numberOfItems;
 	private double totalAmount;
 	private double paidAmount;
 	private double balance;
 
-	public Invoice(String firstName, String lastName, String phoneNumber, String invoiceDate, 
+	public Invoice(String firstName, String lastName, int phoneNumber, String invoiceDate, 
 			int numberOfItems, double totalAmount, double paidAmount, double balance) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -39,11 +39,11 @@ public class Invoice {
 	    this.lastName = lastName;
 	}
 	
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 	    return phoneNumber;
 	}
 	
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 	    this.phoneNumber = phoneNumber;
 	}
 	
