@@ -1,17 +1,17 @@
 package src;
-
 import java.sql.*;
 
 public class JDBC {
-	static void createTable() {
-		String url = "jdbc:sqlserver://localhost:1433;" +
-                "databaseName = myDB;" +
-                "encrypt = true;" +
-                "trustServerCertificate = true";
+	static String url = "jdbc:sqlserver://localhost:1433;" +
+            "databaseName = myDB;" +
+            "encrypt = true;" +
+            "trustServerCertificate = true";
 
-        String user = "sa";
-        String pass = "root";
-        Connection con = null;
+	static String user = "sa";
+	static String pass = "root";
+    static Connection con = null;
+    
+	static void createTable() {
         
         try {
 
@@ -53,11 +53,4 @@ public class JDBC {
 		
 	}
 	
-	static void addItem() {
-		
-	}
-	
-	static void addInvoice() {
-		
-	}
 }

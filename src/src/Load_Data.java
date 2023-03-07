@@ -1,4 +1,5 @@
 package src;
+import java.sql.*;
 import java.util.*;
 
 public class Load_Data extends Menu_Item implements Repeat{
@@ -10,9 +11,19 @@ public class Load_Data extends Menu_Item implements Repeat{
 	Load_Data(){
         this.item_name="Load Data ";
     }
+	
 	static ArrayList<Item> itemsList = new ArrayList<>();
 	static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
+	
 	void item_action() {
+		String url = "jdbc:sqlserver://localhost:1433;" +
+                "databaseName = myDB;" +
+                "encrypt = true;" +
+                "trustServerCertificate = true";
+
+        String user = "sa";
+        String pass = "root";
+        Connection con = null;
         
         while(item_loop) {
         	// Get item details from user
@@ -31,6 +42,31 @@ public class Load_Data extends Menu_Item implements Repeat{
         	
         	double quantityAmount = unitPrice * quantity;
         	
+        	 try {
+
+                 Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+                 DriverManager.registerDriver(driver);
+
+                 con = DriverManager.getConnection(url, user, pass);
+
+
+                 Statement st = con.createStatement();
+                 
+                 String sql_insert_into_item = "INSERT INTO Item VALUES ('" + itemName + 
+                 		"', " + unitPrice + ", " + quantity + ", " + quantityAmount + ")";
+
+
+
+                 Integer m = st.executeUpdate(sql_insert_into_item);
+                 if (m >= 1) {
+                     System.out.println("inserted successfully : " + sql_insert_into_item);
+                 } else {
+                     System.out.println("insertion failed");
+                 }
+                
+             } catch (Exception ex) {
+                 System.err.println(ex);
+             }
         	repeat();
         	// Create item object and add to the list
         	Item item = new Item(itemId, itemName, unitPrice, quantity, quantityAmount);
@@ -62,12 +98,28 @@ public class Load_Data extends Menu_Item implements Repeat{
             double paidAmount = scan.nextDouble();
 
             double balance = totalAmount - paidAmount;
+            String name = firstName + " " + lastName;
+            try {
+                Statement sta = con.createStatement();
+                
+                String sql_insert_into_invoice = "INSERT INTO Invoice (customer_name, phone_number, no_of_items, total_amount, paid_amount, balance) VALUES ('" 
+                + name + "', " + phoneNumber + ", " + numberOfItems + ", " + totalAmount + ", " + paidAmount 
+                + ", " + balance +")";
+                Integer n = sta.executeUpdate(sql_insert_into_invoice);
+                if (n >= 1) {
+                    System.out.println("inserted successfully ");
+                } else {
+                    System.out.println("insertion failed");
+                }
+                con.close();
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
             
             repeat(); 
             
             Invoice invoice = new Invoice(firstName, lastName, phoneNumber, invoiceDate, numberOfItems, totalAmount, paidAmount, balance);
             invoiceList.add(invoice);
-            
         }
         
 	}

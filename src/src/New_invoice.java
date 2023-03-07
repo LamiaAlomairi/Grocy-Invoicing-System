@@ -2,6 +2,8 @@ package src;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class New_invoice extends Menu_Item implements Repeat{
@@ -13,6 +15,16 @@ public class New_invoice extends Menu_Item implements Repeat{
     }
 	
 	void item_action() {
+		
+		String url = "jdbc:sqlserver://localhost:1433;" +
+                "databaseName = myDB;" +
+                "encrypt = true;" +
+                "trustServerCertificate = true";
+
+        String user = "sa";
+        String pass = "root";
+        Connection con = null;
+        
 		try{
 			while(newInvoice_loop) {
 				
@@ -38,7 +50,24 @@ public class New_invoice extends Menu_Item implements Repeat{
 	            float paid_amount = scan.nextFloat();
 	            
 	            float balance = total_amount - paid_amount;
-	            
+	            String name = customer_FirstName + " " + customer_LastName;
+	            try {
+	                Statement sta = con.createStatement();
+	                
+	                String sql_insert_into_invoice = "INSERT INTO Invoice (customer_name, phone_number, no_of_items, total_amount, paid_amount, balance) VALUES ('" 
+	                		+ name + "', " + phone_number + ", " + number_of_item + ", " + total_amount +
+	                		", " + paid_amount + ", " + balance +")";
+
+	                Integer n = sta.executeUpdate(sql_insert_into_invoice);
+	                if (n >= 1) {
+	                    System.out.println("inserted successfully ");
+	                } else {
+	                    System.out.println("insertion failed");
+	                }
+	                con.close();
+	            } catch (Exception ex) {
+	                System.err.println(ex);
+	            }
 	            repeat();
 	            
 	          try{

@@ -1,6 +1,10 @@
 package src;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.*;
 
 public class Add_Item extends Menu_Item implements Repeat{
@@ -26,8 +30,41 @@ public class Add_Item extends Menu_Item implements Repeat{
 	            System.out.print("Enter Quantity: ");
 	            int quantity = scan.nextInt();
 	            
-	            System.out.print("Enter Price: ");
-	            float price = scan.nextFloat();
+	            double quantityAmount = unit_price * quantity;
+	            
+	            String url = "jdbc:sqlserver://localhost:1433;" +
+	                    "databaseName = myDB;" +
+	                    "encrypt = true;" +
+	                    "trustServerCertificate = true";
+
+	            String user = "sa";
+	            String pass = "root";
+	            Connection con = null;
+	            try {
+
+	                 Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+	                 DriverManager.registerDriver(driver);
+
+	                 con = DriverManager.getConnection(url, user, pass);
+
+
+	                 Statement st = con.createStatement();
+	                 
+	                 String sql_insert_into_item = "INSERT INTO Item VALUES ('" + item_name + 
+	                 		"', " + unit_price + ", " + quantity + ", " + quantityAmount + ")";
+
+
+
+	                 Integer m = st.executeUpdate(sql_insert_into_item);
+	                 if (m >= 1) {
+	                     System.out.println("inserted successfully : " + sql_insert_into_item);
+	                 } else {
+	                     System.out.println("insertion failed");
+	                 }
+	                
+	             } catch (Exception ex) {
+	                 System.err.println(ex);
+	             }
 	            
 	          repeat();
 	          try{
@@ -37,7 +74,7 @@ public class Add_Item extends Menu_Item implements Repeat{
 		          	out.writeObject(item_name + "\n");
 		          	out.writeObject(unit_price + "\n");
 		          	out.writeObject(quantity + "\n");
-		          	out.writeObject(price + "\n");
+		          	out.writeObject(quantityAmount + "\n");
 			      
 		          	out.close();
 		          	fileout.close();
