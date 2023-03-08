@@ -2,7 +2,7 @@ package src;
 
 
 public class Item{
-	private static int nextId = 1;
+	 private static int nextId = 1;
 	 private int itemId;
 	 private String itemName;
 	 private float unitPrice;

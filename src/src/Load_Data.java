@@ -76,9 +76,6 @@ public class Load_Data extends Menu_Item implements Repeat{
             System.out.print("Enter Customer Phone Number: ");
             int phoneNumber = scan.nextInt();
 
-            System.out.print("Enter Invoice Date: ");
-            String invoiceDate = scan.next();
-
             System.out.print("Enter Number Of Item: ");
             int numberOfItems = scan.nextInt();
 
@@ -109,7 +106,7 @@ public class Load_Data extends Menu_Item implements Repeat{
             }
         	repeat();
 //  Without JDBC     *******************************************************************************************              
-            Invoice invoice = new Invoice(firstName, lastName, phoneNumber, invoiceDate, numberOfItems, totalAmount, paidAmount, balance);
+            Invoice invoice = new Invoice(firstName, lastName, phoneNumber, numberOfItems, totalAmount, paidAmount, balance);
             invoiceList.add(invoice);
         }
         

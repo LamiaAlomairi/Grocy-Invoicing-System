@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class New_invoice extends Menu_Item implements Repeat{
+	private static final Invoice LocatDate = null;
 	Scanner scan = new Scanner(System.in);
 	static boolean newInvoice_loop = true;
 //  Constructor    ********************************************************************************************		
@@ -71,8 +72,9 @@ public class New_invoice extends Menu_Item implements Repeat{
 	            }
 	            repeat();
 //	Without JDBC     *******************************************************************************************		 	            
-	            Invoice invoice = new Invoice(customer_FirstName, customer_LastName, phone_number, invoice_date, number_of_item, total_amount, paid_amount, balance);
+	            Invoice invoice = new Invoice(customer_FirstName, customer_LastName, phone_number, number_of_item, total_amount, paid_amount, balance);
 	            Load_Data.invoiceList.add(invoice);  
+	            Load_Data.invoiceList.add(LocatDate); 
 	          try{
 		          	FileOutputStream fileout = new FileOutputStream("InvoiceSystem.txt",true);
 		          	ObjectOutputStream out = new ObjectOutputStream(fileout);

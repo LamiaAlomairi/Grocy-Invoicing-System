@@ -1,22 +1,23 @@
 package src;
+import java.text.*;
+import java.time.LocalDate;
 
 public class Invoice {
-    
 	private String firstName;
 	private String lastName;
 	private int phoneNumber;
-	private String invoiceDate;
+	private LocalDate  invoiceDate;
 	private int numberOfItems;
 	private double totalAmount;
 	private double paidAmount;
 	private double balance;
 
-	public Invoice(String firstName, String lastName, int phoneNumber, String invoiceDate, 
+	public Invoice(String firstName, String lastName, int phoneNumber, 
 			int numberOfItems, double totalAmount, double paidAmount, double balance) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
-		this.invoiceDate = invoiceDate;
+		this.invoiceDate = LocalDate.now();
 		this.numberOfItems = numberOfItems;
 		this.totalAmount = totalAmount;
 		this.paidAmount = paidAmount;
@@ -47,11 +48,9 @@ public class Invoice {
 	    this.phoneNumber = phoneNumber;
 	}
 	
-	public String getInvoiceDate() {
-	    return invoiceDate;
-	}
 	
-	public void setInvoiceDate(String invoiceDate) {
+	
+	public void setInvoiceDate(LocalDate  invoiceDate) {
 	    this.invoiceDate = invoiceDate;
 	}
 	
@@ -89,11 +88,13 @@ public class Invoice {
 	// toString method to print invoice details
     @Override
     public String toString() {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // define a date format
+        String formattedDate = dateFormat.format(invoiceDate);
         return "Invoice{" +
                 "firstName=" + firstName +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", invoiceDate=" + invoiceDate +
+                ", invoiceDate=" + formattedDate  +
                 ", numberOfItems=" + numberOfItems +
                 ", totalAmount=" + totalAmount +
                 ", paidAmount=" + paidAmount +
