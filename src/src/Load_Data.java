@@ -5,55 +5,47 @@ import java.util.*;
 public class Load_Data extends Menu_Item implements Repeat{
 	Scanner scan = new Scanner(System.in);
 	
+	static ArrayList<Item> itemsList = new ArrayList<>();
+	static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 	boolean item_loop = true;
 	boolean invoice_loop = true;
 	
+//  Constructor    ********************************************************************************************		
 	Load_Data(){
         this.item_name="Load Data ";
     }
-	
-	static ArrayList<Item> itemsList = new ArrayList<>();
-	static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
-	
+//  Action Method   *******************************************************************************************	
 	void item_action() {
-		String url = "jdbc:sqlserver://localhost:1433;" +
-                "databaseName = myDB;" +
-                "encrypt = true;" +
-                "trustServerCertificate = true";
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName = myDB;" +
+                "encrypt = true;" + "trustServerCertificate = true";
 
         String user = "sa";
         String pass = "root";
         Connection con = null;
-        
         while(item_loop) {
         	// Get item details from user
-        	int itemId = 1;
+        	
         	
         	System.out.print("Enter Item Name: ");
-        	String itemName = scan.nextLine();
+        	String itemName = scan.next();
         	
         	System.out.print("Enter Unit Price: ");
-        	double unitPrice = scan.nextDouble();
+        	float unitPrice = scan.nextFloat();
         	
         	System.out.print("Enter Quantity: ");
         	int quantity = scan.nextInt();
         	
         	double quantityAmount = unitPrice * quantity;
-        	
+//  With JDBC     *******************************************************************************************  
         	 try {
 
                  Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
                  DriverManager.registerDriver(driver);
-
                  con = DriverManager.getConnection(url, user, pass);
-
-
                  Statement st = con.createStatement();
                  
                  String sql_insert_into_item = "INSERT INTO Item VALUES ('" + itemName + 
                  		"', " + unitPrice + ", " + quantity + ", " + quantityAmount + ")";
-
-
 
                  Integer m = st.executeUpdate(sql_insert_into_item);
                  if (m >= 1) {
@@ -66,10 +58,10 @@ public class Load_Data extends Menu_Item implements Repeat{
                  System.err.println(ex);
              }
         	repeat();
+//  Without JDBC     *******************************************************************************************  	
         	// Create item object and add to the list
-        	Item item = new Item(itemId, itemName, unitPrice, quantity, quantityAmount);
+        	Item item = new Item( itemName, unitPrice, quantity, quantityAmount);
         	itemsList.add(item);
-        	itemId++;
         }
         
         
@@ -97,6 +89,8 @@ public class Load_Data extends Menu_Item implements Repeat{
             double paidAmount = scan.nextDouble();
 
             double balance = totalAmount - paidAmount;
+           
+//  With JDBC     *******************************************************************************************  		
             String name = firstName + " " + lastName;
             try {
                 Statement sta = con.createStatement();
@@ -110,18 +104,18 @@ public class Load_Data extends Menu_Item implements Repeat{
                 } else {
                     System.out.println("insertion failed");
                 }
-                con.close();
             } catch (Exception ex) {
                 System.err.println(ex);
             }
-            
-            repeat(); 
-            
+        	repeat();
+//  Without JDBC     *******************************************************************************************              
             Invoice invoice = new Invoice(firstName, lastName, phoneNumber, invoiceDate, numberOfItems, totalAmount, paidAmount, balance);
             invoiceList.add(invoice);
         }
         
 	}
+
+//  ***********************************************************************************************************
 	@Override
 	public void repeat() {
 		while(true){

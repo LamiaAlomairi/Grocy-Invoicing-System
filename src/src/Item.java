@@ -2,14 +2,16 @@ package src;
 
 
 public class Item{
+	private static int nextId = 1;
 	 private int itemId;
 	 private String itemName;
-	 private double unitPrice;
+	 private float unitPrice;
 	 private int quantity;
 	 private float quantityAmount;
 
-	    public Item(int itemId, String itemName, double unitPrice, int quantity, double quantityAmount) {
-	        this.itemId = itemId;
+	    public Item(String itemName, float unitPrice, int quantity, double quantityAmount) {
+	    	this.itemId = nextId;
+	        nextId++;
 	        this.itemName = itemName;
 	        this.unitPrice = unitPrice;
 	        this.quantity = quantity;
@@ -20,10 +22,6 @@ public class Item{
 	        return itemId;
 	    }
 
-	    public void setItemId(int itemId) {
-	        this.itemId = itemId;
-	    }
-
 	    public String getItemName() {
 	        return itemName;
 	    }
@@ -32,11 +30,11 @@ public class Item{
 	        this.itemName = itemName;
 	    }
 
-	    public double getUnitPrice() {
+	    public float getUnitPrice() {
 	        return unitPrice;
 	    }
 
-	    public void setUnitPrice(double unitPrice) {
+	    public void setUnitPrice(float unitPrice) {
 	        this.unitPrice = unitPrice;
 	    }
 

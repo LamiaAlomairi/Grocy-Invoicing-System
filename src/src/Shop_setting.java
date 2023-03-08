@@ -3,10 +3,12 @@ import java.util.*;
 public class Shop_setting extends Menu_Item{
 	Scanner scan = new Scanner(System.in);
 	static boolean shop_setting_while = true;
+	
+//  Constructor    ********************************************************************************************			
 	Shop_setting(){
         this.item_name="Shop Settings";
     }
-	
+//  Action Method   *******************************************************************************************				
 	void item_action() {
 		
 		while(shop_setting_while){

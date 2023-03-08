@@ -3,24 +3,22 @@ package src;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Scanner;
 
 public class New_invoice extends Menu_Item implements Repeat{
 	Scanner scan = new Scanner(System.in);
 	static boolean newInvoice_loop = true;
-	
+//  Constructor    ********************************************************************************************		
 	New_invoice(){
         this.item_name="Create New Invoice ";
     }
-	
+//  Action Method   *******************************************************************************************			
 	void item_action() {
-		
-		String url = "jdbc:sqlserver://localhost:1433;" +
-                "databaseName = myDB;" +
-                "encrypt = true;" +
-                "trustServerCertificate = true";
-
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName = myDB;" +
+                "encrypt = true;" + "trustServerCertificate = true";
         String user = "sa";
         String pass = "root";
         Connection con = null;
@@ -51,9 +49,12 @@ public class New_invoice extends Menu_Item implements Repeat{
 	            
 	            float balance = total_amount - paid_amount;
 	            String name = customer_FirstName + " " + customer_LastName;
+//	With JDBC     *******************************************************************************************		 	            
 	            try {
+	            	Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+	                DriverManager.registerDriver(driver);
+	                con = DriverManager.getConnection(url, user, pass);
 	                Statement sta = con.createStatement();
-	                
 	                String sql_insert_into_invoice = "INSERT INTO Invoice (customer_name, phone_number, no_of_items, total_amount, paid_amount, balance) VALUES ('" 
 	                		+ name + "', " + phone_number + ", " + number_of_item + ", " + total_amount +
 	                		", " + paid_amount + ", " + balance +")";
@@ -64,12 +65,14 @@ public class New_invoice extends Menu_Item implements Repeat{
 	                } else {
 	                    System.out.println("insertion failed");
 	                }
-	                con.close();
+	                //con.close();
 	            } catch (Exception ex) {
 	                System.err.println(ex);
 	            }
 	            repeat();
-	            
+//	Without JDBC     *******************************************************************************************		 	            
+	            Invoice invoice = new Invoice(customer_FirstName, customer_LastName, phone_number, invoice_date, number_of_item, total_amount, paid_amount, balance);
+	            Load_Data.invoiceList.add(invoice);  
 	          try{
 		          	FileOutputStream fileout = new FileOutputStream("InvoiceSystem.txt",true);
 		          	ObjectOutputStream out = new ObjectOutputStream(fileout);
@@ -98,7 +101,7 @@ public class New_invoice extends Menu_Item implements Repeat{
       }
 		
 	}
-
+//   ****************************************************************************************************
 	@Override
 	public void repeat() {
 		while(true){

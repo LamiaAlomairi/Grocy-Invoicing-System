@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Invoice_header extends Menu_Item{
 	
 	Scanner scan = new Scanner(System.in);
-	
+//  Constructor    ********************************************************************************************			
 	Invoice_header(){
         this.item_name="Set Invoice Header "; 
     }

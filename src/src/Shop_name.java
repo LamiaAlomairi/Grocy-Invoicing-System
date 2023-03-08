@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Shop_name extends Menu_Item{
 	Scanner scan = new Scanner(System.in);
-	
+//  Constructor    ********************************************************************************************			
 	Shop_name(){
         this.item_name="Set Shop Name "; 
     }
@@ -21,7 +21,7 @@ public class Shop_name extends Menu_Item{
     {
     	return shop_Name;       
     }
-	
+//  Action Method   *******************************************************************************************				
 	void item_action() {
 		System.out.print("Write A Shop Name:  ");
 		shop_Name = scan.next();

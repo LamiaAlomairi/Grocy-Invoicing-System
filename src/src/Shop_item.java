@@ -6,11 +6,11 @@ public class Shop_item extends Menu_Item{
 	
 	static boolean shop_item_while = true;
 	Scanner scan = new Scanner(System.in);
-	
+//  Constructor    ********************************************************************************************			
 	Shop_item(){
         this.item_name="Manage Shop Items";
     }
-	
+//  Action Method   *******************************************************************************************			
 	void item_action() {
 		while(shop_item_while){
             try {

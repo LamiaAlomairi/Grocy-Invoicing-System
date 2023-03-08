@@ -3,10 +3,11 @@ package src;
 import java.util.ArrayList;
 
 public class Statistic extends Menu_Item{
+//  Constructor    ********************************************************************************************			
 	Statistic(){
         this.item_name="Report: Statistics ";
     }
-	
+//  Action Method   *******************************************************************************************					
 	void item_action() {
 		int numOfItems = Load_Data.itemsList.size();
         int numOfInvoices = Load_Data.invoiceList.size();

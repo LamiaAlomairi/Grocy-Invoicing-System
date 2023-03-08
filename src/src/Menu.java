@@ -12,6 +12,8 @@ public class Menu {
             Shop_item.shop_item_while = true;
             New_invoice.newInvoice_loop = true;
             Search_invoice.searchLoop = true;
+            Add_Item.addItem_loop = true;
+            Change_Item_Price.change_Item_loop = true;
         }
     }
 }

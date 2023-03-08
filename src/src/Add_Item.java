@@ -10,16 +10,16 @@ import java.util.*;
 public class Add_Item extends Menu_Item implements Repeat{
 	Scanner scan = new Scanner(System.in);
 	static boolean addItem_loop = true;
-	
+//  Constructor    *******************************************************************************************	
     Add_Item(){
         this.item_name = "Add Item "; 
     }
-	
+//  Action Method   *******************************************************************************************	
 	void item_action() {
 		try {
+			 int item_id = 1;
 			while(addItem_loop) {
-	    		System.out.print("Enter Item Id: ");
-	            String item_id = scan.next();
+	           
 	            
 	            System.out.print("Enter Item Name: ");
 	            String item_name = scan.next();
@@ -31,7 +31,7 @@ public class Add_Item extends Menu_Item implements Repeat{
 	            int quantity = scan.nextInt();
 	            
 	            double quantityAmount = unit_price * quantity;
-	            
+//	With JDBC     *******************************************************************************************		            
 	            String url = "jdbc:sqlserver://localhost:1433;" +
 	                    "databaseName = myDB;" +
 	                    "encrypt = true;" +
@@ -65,6 +65,8 @@ public class Add_Item extends Menu_Item implements Repeat{
 	             }
 	            
 	          repeat();
+	          
+//  Without JDBC   *******************************************************************************************	          
 	          try{
 		          	FileOutputStream fileout = new FileOutputStream("InvoiceSystem.txt",true);
 		          	ObjectOutputStream out = new ObjectOutputStream(fileout);
@@ -77,6 +79,10 @@ public class Add_Item extends Menu_Item implements Repeat{
 		          	out.close();
 		          	fileout.close();
 		          	System.out.println("serialized and saved");
+		          	
+		          	Item item = new Item( item_name, unit_price, quantity, quantityAmount);
+		        	Load_Data.itemsList.add(item);
+		        	item_id++;
 		      }
 	        catch (Exception e){
 	        	System.out.println("serialized Error");
@@ -87,9 +93,9 @@ public class Add_Item extends Menu_Item implements Repeat{
 		catch(Exception e) {
 			System.out.println("Error");
 		}
-		
-    	
 	}
+
+//****************************************************************************************************************
 	@Override
 	public void repeat() {
 		while(true){
@@ -97,7 +103,6 @@ public class Add_Item extends Menu_Item implements Repeat{
             String select=scan.next();
             if(select.equals("N") || select.equals("n")){
             	addItem_loop = false;
-            	
                 break;
             }
             else if(select.equals("y")||select.equals("Y")){
