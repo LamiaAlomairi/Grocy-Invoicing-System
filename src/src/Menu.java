@@ -14,6 +14,7 @@ public class Menu {
             Search_invoice.searchLoop = true;
             Add_Item.addItem_loop = true;
             Change_Item_Price.change_Item_loop = true;
+            Delete_Item.delete_Item_loop = true;
         }
     }
 }
