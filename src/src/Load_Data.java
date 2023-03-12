@@ -35,7 +35,7 @@ public class Load_Data extends Menu_Item implements Repeat{
         	System.out.print("Enter Quantity: ");
         	int quantity = scan.nextInt();
         	
-        	double quantityAmount = unitPrice * quantity;
+        	float quantityAmount = unitPrice * quantity;
 //  With JDBC     *******************************************************************************************  
         	 try {
 

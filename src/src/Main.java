@@ -12,6 +12,9 @@ public class Main{
 	static boolean jdbc_program = true;
 	static Stack<Integer> stack = new Stack<Integer>();
 	static Scanner scan = new Scanner(System.in);
+	static String url_connection = "jdbc:sqlserver://localhost:1433;";
+	static String connection_username = "sa";
+	static String connection_password ="root";
 	
 	public static void main(String[] args) {
 		createTable();
@@ -20,28 +23,49 @@ public class Main{
 	    int first_selection;
 	    while(program){
  	    	try {
- 	    		System.out.println("________________________________");
- 			    System.out.println("Application Main Menu: ");
- 			    Menu.show_menu(firstMenu.main_menu);
- 			    System.out.print("Select Action  :");
- 			    first_selection = scan.nextInt();
- 			    stack.push(first_selection);
- 			    if(first_selection >0 && first_selection <= firstMenu.main_menu.size()) {
- 			    	first_selection = first_selection - 1;
- 			    	 switch (first_selection) {
- 		                case 0, 1, 2, 3, 4, 5, 6, 7:
- 		                	
- 					    	firstMenu.main_menu.get(first_selection).item_action();
- 		                    break;
- 		                default:
- 		                    System.out.println("Invalid Input ");
- 			    	 } 
- 			    }
- 			    else {
- 			    	System.out.println(" ________________________________________________");
- 			    	System.out.println("|   Invalid number, please enter a valid number  |");
- 			    	System.out.println("|________________________________________________|");
- 			    }
+ 	    		System.out.println("Enter Connection url: ");
+ 	    		 String url_con = scan.next(); 	
+ 	    		if(url_con.equals(url_connection)) {
+ 	    			System.out.println("Enter Connection username: ");
+ 	 	    		connection_username = scan.next(); 
+ 	 	    		if(connection_username.equals("sa")) {
+ 	 	    			System.out.println("Enter Connection password: ");
+ 	 	 	    		connection_password = scan.next(); 
+ 	 	 	    		if(connection_password.equals("root")) {
+ 	 	 	    			System.out.println("________________________________");
+ 	 	 	 			    System.out.println("Application Main Menu: ");
+ 	 	 	 			    Menu.show_menu(firstMenu.main_menu);
+ 	 	 	 			    System.out.print("Select Action  :");
+ 	 	 	 			    first_selection = scan.nextInt();
+ 	 	 	 			    stack.push(first_selection);
+ 	 	 	 			    if(first_selection >0 && first_selection <= firstMenu.main_menu.size()) {
+ 	 	 	 			    	first_selection = first_selection - 1;
+ 	 	 	 			    	 switch (first_selection) {
+ 	 	 	 		                case 0, 1, 2, 3, 4, 5, 6, 7:
+ 	 	 	 		                	
+ 	 	 	 					    	firstMenu.main_menu.get(first_selection).item_action();
+ 	 	 	 		                    break;
+ 	 	 	 		                default:
+ 	 	 	 		                    System.out.println("Invalid Input ");
+ 	 	 	 			    	 } 
+ 	 	 	 			    }
+ 	 	 	 			    else {
+ 	 	 	 			    	System.out.println(" ________________________________________________");
+ 	 	 	 			    	System.out.println("|   Invalid number, please enter a valid number  |");
+ 	 	 	 			    	System.out.println("|________________________________________________|");
+ 	 	 	 			    }
+ 	 	 	    		}
+ 	 	 	    		else {
+ 	 	 	    			System.out.println("Invalid password ");
+ 	 	 	    		}
+ 	 	    		}
+ 	 	    		else {
+ 	 	    			System.out.println("Invalid username ");
+ 	 	    		}
+ 	    		}
+ 	    		else {
+ 	    			System.out.println("Invalid url ");
+ 	    		}
  			} 
  	    	catch (Exception e) {
  				System.out.println(" _____________________________________________");
@@ -53,10 +77,10 @@ public class Main{
 	}
 // Method To Create Tables   *************************************************************************************	
 	static void createTable() {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName = myDB;" +
+		String url = url_connection + "databaseName = myDB;" +
 	            "encrypt = true;" + "trustServerCertificate = true";
-		String user = "sa";
-		String pass = "root";
+		String user = connection_username;
+		String pass = connection_password;
 	    Connection con = null;
         try {
             Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
