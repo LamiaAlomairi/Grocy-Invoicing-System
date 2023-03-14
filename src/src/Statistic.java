@@ -1,4 +1,24 @@
 package src;
+public class Statistic extends Menu_Item{
+//  Constructor    ********************************************************************************************			
+	Statistic(){
+        this.item_name="Report: Statistics ";
+    }
+//  Action Method   *******************************************************************************************					
+	void item_action() {
+        int numOfInvoices = Load_Data.invoiceList.size();
+        
+        System.out.println("Number of items:    " + Load_Data.no_of_item);
+        System.out.println("Number of invoices: " + numOfInvoices);
+        System.out.println("Total sales:        " + Load_Data.totalSales);
+	}
+
+	
+}
+
+
+/*
+package src;
 
 import java.util.ArrayList;
 
@@ -28,3 +48,4 @@ public class Statistic extends Menu_Item{
 	        return totalSales;
 	}
 }
+*/

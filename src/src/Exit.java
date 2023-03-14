@@ -29,10 +29,14 @@ public class Exit extends Menu_Item{
 	                DriverManager.registerDriver(driver);
 	                con = DriverManager.getConnection(url, user, pass);
 	                Statement st = con.createStatement();
+	                String sql_Delete3 = "DROP TABLE Invoice_Item;";
+	                st.executeUpdate(sql_Delete3);
 	                String sql_Delete = "DROP TABLE Item;";
-	                String sql_Delete2 = "DROP TABLE Invoice;";
 	                st.executeUpdate(sql_Delete);
+	                
+	                String sql_Delete2 = "DROP TABLE Invoice;";
 	                st.executeUpdate(sql_Delete2);
+	                
 	            } catch (Exception ex) {
 	                System.err.println(ex);
 	            }
